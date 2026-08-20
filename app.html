@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Practice Room: Play a Real Piece</title>
+  <meta name="description" content="Practise real pieces with wait mode, section looping, hand separation, tempo, transpose, count-in, sustain pedal and a grand staff.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#14100F">
+  <link rel="canonical" href="https://learnpianokeys.com/app.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Learn Piano Keys">
+  <meta property="og:title" content="Practice Room: Play a Real Piece">
+  <meta property="og:description" content="Practise real pieces with wait mode, section looping, hand separation, tempo, transpose, count-in, sustain pedal and a grand staff.">
+  <meta property="og:url" content="https://learnpianokeys.com/app.html">
+  <meta property="og:image" content="https://learnpianokeys.com/og-app.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="The Learn Piano Keys practice room, with falling notes above a piano keybed">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Practice Room: Play a Real Piece">
+  <meta name="twitter:description" content="Practise real pieces with wait mode, section looping, hand separation, tempo, transpose, count-in, sustain pedal and a grand staff.">
+  <meta name="twitter:image" content="https://learnpianokeys.com/og-app.png">
+  <meta name="twitter:image:alt" content="The Learn Piano Keys practice room, with falling notes above a piano keybed">
+  <meta name="author" content="Learn Piano Keys">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Piano Keys">
+  <link rel="alternate" hreflang="en-gb" href="https://learnpianokeys.com/app.html">
+  <link rel="alternate" hreflang="x-default" href="https://learnpianokeys.com/app.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
+  <link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
+  <link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=IBM+Plex+Mono:wght@400;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css?v=17">
+  <script>(function(){try{var t=localStorage.getItem('lpk.theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body class="wide">
+
+<a class="skip" href="#main">Skip to the main content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Piano Keys</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/piano-keys-for-beginners.html">Start here</a>
+      <a href="/piano-lessons.html">Lessons</a>
+      <a href="/how-to-read-music.html">Read music</a>
+      <a href="/songs.html">Songs</a>
+      <a href="/chords.html">Chords</a>
+      <a href="/guides/">Guides</a>
+      <a href="/tools.html">Tools</a>
+      <a href="/practice.html">Progress</a>
+      <a href="/#compare">What is free</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark">Light</button>
+      <button class="pill signin" id="signInBtn" hidden>Sign in</button>
+      <div class="acct" id="acct" hidden>
+        <button class="acct-btn" id="acctBtn" aria-expanded="false" aria-haspopup="true" aria-label="Your account"><span id="acctInitial">P</span></button>
+        <div class="acct-menu" id="acctMenu" hidden>
+          <p class="acct-email" id="acctEmail"></p>
+          <p class="acct-state">Unlocked, free</p>
+          <button class="pill" id="acctOut">Sign out</button>
+        </div>
+      </div>
+      <a class="btn btn-primary btn-sm nav-cta" href="/app.html">Practice room</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><a href="/">Home</a><span class="sep">/</span><span aria-current="page">Practice room</span></div></nav>
+<main id="main">
+<div class="stage">
+
+  <section class="howto" id="howto" aria-labelledby="howtoTitle">
+    <div class="howto-head">
+      <h2 id="howtoTitle">How the practice room works</h2>
+      <button class="pill" id="howtoToggle" aria-expanded="true" aria-controls="howtoBody">Hide</button>
+    </div>
+    <div id="howtoBody">
+      <p class="howto-lede">Six things, and then you can leave this panel alone. If you have never touched a piano, do the <a href="/piano-keys-for-beginners.html">five minute walkthrough</a> first: it is gentler than this page.</p>
+      <ol class="howto-steps">
+        <li><b>Pick a piece.</b> Use the dropdown at the top right. Twinkle, Twinkle is the easiest. Start there if you are unsure.</li>
+        <li><b>Press Play.</b> You get two bars of clicks to count you in, then the coloured blocks start falling towards the keyboard at the bottom.</li>
+        <li><b>Play a block when it lands on the strike line.</b> The colour tells you which hand: <span class="ink-l">blue for your left hand</span>, <span class="ink-r">rose for your right</span>. That never changes, whatever you play. The small number on each block is the finger to use, with 1 as the thumb. A green outline appears once you have played a block in time, and a red one if it went past you.</li>
+        <li><b>Nothing runs away from you.</b> Wait mode is on, so the music stops and waits until you play the right note. Drag the Tempo slider down if it still feels fast.</li>
+        <li><b>Loop the hard bit.</b> Tap any numbered bar in the Loop a section panel and it repeats until you leave it. Trouble spots also lists the bars you keep fluffing, with a one-tap loop.</li>
+        <li><b>Watch three scores, not one.</b> Right notes, in time, and reading. Read mode hides the falling blocks and leaves the stave, and only what you play then counts towards reading. If the stave is still a mystery, the <a href="/how-to-read-music.html">reading guide</a> is free and takes about ten minutes a day.</li>
+      </ol>
+      <p class="howto-foot">No keyboard? Tap the on-screen keys, or use your computer's <kbd>A</kbd> to <kbd>K</kbd> row. A MIDI keyboard plugged in by USB works straight away.</p>
+      <button class="btn btn-primary btn-sm" id="howtoDone">Got it, let me play</button>
+    </div>
+  </section>
+
+  <div class="invite" id="invite" hidden>
+    <p><strong>Everything here is free.</strong> Sign up with an email whenever you like and the practice room stays unlocked on this device. Nothing is charged and no card details are ever requested.</p>
+    <div class="invite-actions">
+      <button class="btn btn-primary btn-sm" id="inviteGo">Unlock it now</button>
+      <button class="pill" id="inviteLater">Not just now</button>
+    </div>
+  </div>
+
+
+  <div class="stage-head">
+    <div>
+      <h1 id="pieceTitle">Twinkle, Twinkle, Little Star</h1>
+      <div class="stage-meta" id="pieceMeta"></div>
+    </div>
+    <div class="picker">
+      <span class="badge status" id="midiBadge">Checking for MIDI…</span>
+      <button type="button" class="badge status" id="micBadge" aria-pressed="false" title="Turn the microphone on or off">Microphone off</button>
+      <span class="badge sess" id="sessTime" title="Time practised this visit. It pauses by itself when you step away." hidden>0:00</span>
+      <button type="button" class="badge sess-finish" id="sessFinish" hidden>Finish session</button>
+      <select id="pieceSel" aria-label="Choose a piece"></select>
+    </div>
+  </div>
+
+  <div class="resume-strip" id="resumeStrip" hidden>
+    <span>Picked up where you left off.</span>
+    <button type="button" class="pill" id="freshBtn">Start afresh</button>
+  </div>
+
+  <div class="piece-cards" id="pieceCards" role="group" aria-label="Choose a piece"></div>
+
+  <div class="layout">
+    <div>
+      <div class="instrument">
+        <div class="staff-wrap">
+          <canvas id="staff" role="img" aria-label="Grand staff showing the current two bars of music"></canvas>
+        </div>
+        <div class="roll-wrap">
+          <canvas id="roll" role="img" aria-label="Falling note guide above the keyboard"></canvas>
+          <div class="judge" id="judge" aria-hidden="true"></div>
+          <div class="wait-badge" id="waitBadge">waiting for you</div>
+          <div class="take-badge" id="takeBadge">your take</div>
+          <div class="pulse" id="pulse" aria-hidden="true"></div>
+        </div>
+        <p class="coach" id="coach">Press Play when you are ready.</p>
+        <div class="hand-legend" aria-hidden="false">
+          <span class="legend-item"><i class="sw sw-l"></i>Left hand</span>
+          <span class="legend-item"><i class="sw sw-r"></i>Right hand</span>
+          <span class="legend-item"><i class="sw sw-hit"></i>Played in time</span>
+          <span class="legend-item"><i class="sw sw-miss"></i>Missed</span>
+        </div>
+        <div class="keybed in-app">
+          <div class="keys" id="keys" role="group" aria-label="Piano keyboard. Play using your computer keys, a MIDI keyboard, or by clicking the keys."></div>
+        </div>
+      </div>
+
+      <div class="rotate-tip" id="rotateTip">
+        <span>Tip: turn your phone sideways and the keyboard gets wider.</span>
+        <button type="button" class="rotate-tip-close" id="rotateTipClose">Got it</button>
+      </div>
+
+      <div class="transport">
+        <button class="btn btn-primary btn-sm" id="playBtn">Play</button>
+        <button class="btn btn-ghost btn-sm" id="restartBtn">Restart</button>
+        <button class="btn btn-ghost btn-sm" id="demoBtn" aria-pressed="false">Hear the demo</button>
+        <button class="pill" id="howtoOpen">How this works</button>
+        <div class="tempo">
+          <label for="bpm">Tempo</label>
+          <input type="range" id="bpm" min="30" max="160" value="88">
+          <output id="bpmOut">88</output>
+        </div>
+        <div class="tempo transpose">
+          <label>Key</label>
+          <button class="step" id="transDown" aria-label="Transpose down one semitone">&minus;</button>
+          <output id="transOut">concert</output>
+          <button class="step" id="transUp" aria-label="Transpose up one semitone">+</button>
+          <span class="trans-key" id="transKey"></span>
+        </div>
+        <div class="spacer"></div>
+        <div class="pill-row">
+          <span class="label">Level</span>
+          <button class="pill" data-level="1" aria-pressed="false">1 One hand</button>
+          <button class="pill" data-level="2" aria-pressed="false">2 Add bass</button>
+          <button class="pill active" data-level="3" aria-pressed="true">3 Both hands</button>
+        </div>
+        <div class="pill-row">
+          <span class="label">Hands</span>
+          <button class="pill active" data-hand="both" aria-pressed="true">Both</button>
+          <button class="pill" data-hand="l" aria-pressed="false">Left</button>
+          <button class="pill" data-hand="r" aria-pressed="false">Right</button>
+        </div>
+      </div>
+
+      <div class="pcard" style="margin-top:20px">
+        <h2>Practice tools</h2>
+        <div class="pill-row">
+          <button class="pill" id="waitMode" aria-pressed="true">Wait mode</button>
+          <button class="pill" id="readMode" aria-pressed="false">Read mode</button>
+          <button class="pill" id="countMode" aria-pressed="true">Count in</button>
+          <button class="pill" id="metroMode" aria-pressed="false">Metronome</button>
+          <button class="pill" id="letterMode" aria-pressed="true">Hand letters</button>
+          <button class="pill" id="fingerMode" aria-pressed="true">Fingering</button>
+          <button class="pill" id="nameMode" aria-pressed="true">Note names</button>
+          <button class="pill" id="accompMode" aria-pressed="true">Play other hand</button>
+          <button class="pill" id="pedalMode" aria-pressed="false">Sustain pedal</button>
+          <button class="pill" id="micMode" aria-pressed="false">Use microphone</button>
+        </div>
+        <dl class="tool-glossary">
+          <div><dt>Wait mode</dt><dd>The music stops and waits until you play the right note. Leave this on until you can keep up.</dd></div>
+          <div><dt>Read mode</dt><dd>Hides the falling blocks so you play from the written music instead. Harder. Only this counts towards your reading score.</dd></div>
+          <div><dt>Count in</dt><dd>Two bars of clicks before the music starts, so you are not caught out.</dd></div>
+          <div><dt>Metronome</dt><dd>A click on every beat while you play, to keep you steady.</dd></div>
+          <div><dt>Hand letters</dt><dd>Puts an L or an R on every block so you never have to remember which colour is which hand.</dd></div>
+          <div><dt>Fingering</dt><dd>Puts a number on every block: 1 is your thumb, 5 is your little finger.</dd></div>
+          <div><dt>Note names</dt><dd>Prints C, D, E and so on along the keys.</dd></div>
+          <div><dt>Play other hand</dt><dd>When you practise one hand, the app plays the other one for you.</dd></div>
+          <div><dt>Sustain pedal</dt><dd>Holds the notes ringing. Hold <kbd>Shift</kbd>, or use the real pedal on your MIDI keyboard.</dd></div>
+          <div><dt>Use microphone</dt><dd>For an acoustic piano with no cable. It follows one note at a time, so it is less accurate than plugging in.</dd></div>
+        </dl>
+      </div>
+
+      <div class="pcard" style="margin-top:16px">
+        <h2>Your last run</h2>
+        <div class="pill-row">
+          <button class="pill" id="takeBtn">Hear your take</button>
+          <button class="pill" id="takeRefBtn">Take against the reference</button>
+          <button class="pill" id="shareLinkBtn">Share the link</button>
+        </div>
+        <p class="score-note" style="margin-top:14px">
+          Hearing your own timing back is the fastest way to fix it. Your playing is replayed from your device only; nothing is uploaded.
+          Everything stays inside the app: nothing is downloaded, and your place is kept for you so you can stop and carry on later.
+        </p>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <div class="pcard trouble-card">
+        <h2>Your trouble spots</h2>
+        <div id="trouble"></div>
+      </div>
+
+      <div class="pcard">
+        <h2>This session</h2>
+        <div class="scores">
+          <div class="score-row acc"><span class="score-val" id="accVal">·</span><span class="score-lab">Right notes</span></div>
+          <div class="score-row tim"><span class="score-val" id="timVal">·</span><span class="score-lab">In time</span></div>
+        </div>
+      </div>
+
+      <div class="pcard" id="readCard">
+        <h2>Literacy score</h2>
+        <div class="score-row lit"><span class="score-val" id="litVal">·</span><span class="score-lab">Read from the staff</span></div>
+        <p class="score-note" id="litCount">Turn on Read mode to build this</p>
+        <p class="score-note">This only counts notes you played with the falling guide switched off. It is the number that tells you whether you are reading music or memorising bar positions.</p>
+        <p class="score-note"><a href="/how-to-read-music.html">Learn to read the stave</a> &middot; <a href="/how-to-read-music.html#trainer">note trainer</a></p>
+      </div>
+
+      <div class="pcard">
+        <h2>Kept on this device</h2>
+        <div class="score-row streak"><span class="score-val" id="streakVal">0</span><span class="score-lab" id="streakLab">days in a row</span></div>
+        <p class="score-note" id="bestLine">No saved run for this piece yet.</p>
+        <button class="pill" id="resetProgress" style="margin-top:10px;padding:4px 10px;font-size:.75rem">Clear saved progress</button>
+      </div>
+
+      <div class="pcard">
+        <h2>Loop a section <span style="float:right;font-family:var(--mono);color:var(--brass)" id="loopOut">off</span></h2>
+        <div class="bars" id="bars"></div>
+        <p class="score-note" style="margin-top:12px">Tap a bar to loop it. Tap a later bar to extend the loop.
+          <button class="pill" id="clearLoop" style="padding:4px 10px;font-size:.75rem;margin-top:8px">Clear loop</button>
+        </p>
+      </div>
+
+      <div class="pcard">
+        <h2>Teacher's note</h2>
+        <p class="tip" id="pieceTip"></p>
+      </div>
+
+      <div class="pcard">
+        <h2>No keyboard nearby?</h2>
+        <p class="keyhelp">
+          Play with your computer keys: <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd> <kbd>G</kbd> <kbd>H</kbd> <kbd>J</kbd> <kbd>K</kbd> for the white notes,
+          <kbd>W</kbd> <kbd>E</kbd> <kbd>T</kbd> <kbd>Y</kbd> <kbd>U</kbd> for the black ones.<br>
+          <kbd>Z</kbd> / <kbd>X</kbd> shift an octave · <kbd>Space</kbd> play or pause · <kbd>R</kbd> read mode · <kbd>Shift</kbd> sustain.
+        </p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-cols">
+      <div>
+        <h2>Learn</h2>
+        <a href="/piano-keys-for-beginners.html">Piano keys for beginners</a>
+        <a href="/#paths">Learning paths</a>
+        <a href="/how-to-read-music.html">How to read music notes</a>
+        <a href="/how-to-read-music.html#trainer">Note trainer</a>
+        <a href="/#basics">Piano keys explained</a>
+      </div>
+      <div>
+        <h2>Play</h2>
+        <a href="/songs.html">All songs</a>
+        <a href="/twinkle-twinkle-little-star-piano-notes.html">Twinkle, Twinkle</a>
+        <a href="/ode-to-joy-piano-notes.html">Ode to Joy</a>
+        <a href="/fur-elise-piano-notes.html">F&uuml;r Elise</a>
+      </div>
+      <div>
+        <h2>Guides</h2>
+        <a href="/guides/">All piano guides</a>
+        <a href="/piano-keyboard-layout.html">Piano keyboard layout</a>
+        <a href="/middle-c-on-piano.html">Where is middle C</a>
+        <a href="/piano-finger-numbers.html">Finger numbers</a>
+        <a href="/beginner-piano-roadmap.html">Beginner roadmap</a>
+        <a href="/how-long-to-learn-piano.html">How long does it take</a>
+      </div>
+      <div>
+        <h2>Tools</h2>
+        <a href="/piano-chord-finder.html">Chord finder</a>
+        <a href="/piano-scale-finder.html">Scale finder</a>
+        <a href="/online-piano-metronome.html">Metronome</a>
+        <a href="/online-piano-keyboard.html">Online keyboard</a>
+        <a href="/circle-of-fifths-piano.html">Circle of fifths</a>
+        <a href="/chords.html">Piano chords</a>
+        <a href="/scales.html">Piano scales</a>
+        <a href="/songs.html">All songs</a>
+      </div>
+      <div>
+        <h2>Site</h2>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/public-domain-policy.html">Public domain policy</a>
+      </div>
+    </div>
+    <p class="foot-legal">
+      Learn Piano Keys · info@learnpianokeys.com<br>
+      Every piece on this site is in the public domain and all sound is synthesised in your browser. No recordings are used.
+    </p>
+  </div>
+</footer>
+
+
+<div class="gate" id="gate" hidden>
+  <div class="gate-card" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+    <button class="gate-close" id="gateClose" aria-label="Close" hidden>&times;</button>
+    <p class="eyebrow" id="gateKicker">Free, and it stays free</p>
+    <h2 id="gateTitle">Unlock everything with an email</h2>
+    <p id="gateBlurb"><strong>Signing up is 100% free. Nothing is charged and no card details are ever requested.</strong> It lets us tell you when new pieces, lessons and tools are added, and it keeps the practice room open on this device.</p>
+    <div class="gate-form">
+      <label class="sr-only" for="gateEmail">Your email address</label>
+      <input type="email" id="gateEmail" placeholder="you@example.com" autocomplete="email" inputmode="email">
+      <button class="btn btn-primary" id="gateSubmit">Unlock everything</button>
+    </div>
+    <div class="hp" aria-hidden="true">
+      <label>Leave this empty<input type="text" id="gateWebsite" tabindex="-1" autocomplete="off"></label>
+    </div>
+    <p class="gate-msg" id="gateMsg"></p>
+    <p class="score-note">We send a one-click confirmation link, so nothing happens until you click it in your inbox. Every email has an unsubscribe link and you can ask us to delete your address at any time. See the <a href="/privacy.html">privacy page</a>.</p>
+    <p class="score-note">Already signed up? Enter the same email to unlock this device.</p>
+    <div class="gate-alt" id="gateAlt">
+      <a class="pill" href="/piano-keys-for-beginners.html">Use the free beginner lesson instead</a>
+      <a class="pill" href="/tools.html">Use the free tools instead</a>
+    </div>
+  </div>
+</div>
+
+<div class="hint" id="hint"></div>
+<div id="sr" class="sr-only" role="status" aria-live="polite"></div>
+
+<script src="/assets/pieces.js?v=17"></script>
+<script src="/assets/engine.js?v=17"></script>
+<script src="/assets/gate.js?v=17"></script>
+<script src="/assets/site.js?v=17"></script>
+<script src="/assets/share.js?v=17"></script>
+<script src="/assets/session.js?v=17"></script>
+<script src="/assets/app.js?v=17"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://learnpianokeys.com/#org",
+      "name": "Learn Piano Keys",
+      "url": "https://learnpianokeys.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://learnpianokeys.com/favicon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "email": "info@learnpianokeys.com",
+      "description": "Free piano lessons, practice tools and a browser practice room. No advertising."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://learnpianokeys.com/#website",
+      "url": "https://learnpianokeys.com/",
+      "name": "Learn Piano Keys",
+      "publisher": {
+        "@id": "https://learnpianokeys.com/#org"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://learnpianokeys.com/app.html#webpage",
+      "url": "https://learnpianokeys.com/app.html",
+      "name": "Practice Room: Play a Real Piece",
+      "description": "Practise real pieces with wait mode, section looping, hand separation, tempo, transpose, count-in, sustain pedal and a grand staff.",
+      "isPartOf": {
+        "@id": "https://learnpianokeys.com/#website"
+      },
+      "about": {
+        "@id": "https://learnpianokeys.com/#org"
+      },
+      "inLanguage": "en-GB",
+      "datePublished": "2026-07-18",
+      "dateModified": "2026-08-20",
+      "isAccessibleForFree": true,
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://learnpianokeys.com/og-app.png",
+        "width": 1200,
+        "height": 630,
+        "caption": "The Learn Piano Keys practice room, with falling notes above a piano keybed"
+      },
+      "author": {
+        "@id": "https://learnpianokeys.com/#org"
+      },
+      "publisher": {
+        "@id": "https://learnpianokeys.com/#org"
+      },
+      "breadcrumb": {
+        "@id": "https://learnpianokeys.com/app.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://learnpianokeys.com/app.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://learnpianokeys.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Practice room",
+          "item": "https://learnpianokeys.com/app.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
