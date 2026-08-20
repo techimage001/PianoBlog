@@ -425,7 +425,7 @@ function nav(active) {
     ['Read music', '/how-to-read-music.html', 'how-to-read-music'],
     ['Songs', '/songs.html', 'songs'],
     ['Chords', '/chords.html', 'chords'],
-    ['Guides', '/guides/', null],
+    ['Blog', '/blog/', null],
     ['Tools', '/tools.html', 'tools'],
     ['Progress', '/practice.html', 'practice'],
     ['What is free', '/#compare', null]
@@ -581,8 +581,8 @@ ${body}
         <a href="/fur-elise-piano-notes.html">F&uuml;r Elise</a>
       </div>
       <div>
-        <h2>Guides</h2>
-        <a href="/guides/">All piano guides</a>
+        <h2>Blog</h2>
+        <a href="/blog/">Piano blog</a>
         <a href="/piano-keyboard-layout.html">Piano keyboard layout</a>
         <a href="/middle-c-on-piano.html">Where is middle C</a>
         <a href="/piano-finger-numbers.html">Finger numbers</a>

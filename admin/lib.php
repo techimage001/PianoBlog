@@ -3,10 +3,10 @@ require_once dirname(__DIR__) . '/api/config.php';
 
 /* Learn Piano Keys article publisher.
    Article records live outside public_html in lpk_private/articles.json.
-   Published pages are rendered to static HTML under /guides/<slug>/index.html. */
+   Published pages are rendered to static HTML under /blog/<slug>/index.html. */
 
 define('LPK_ARTICLES_JSON', LPK_PRIVATE_DIR . '/articles.json');
-define('LPK_GUIDES_DIR', dirname(__DIR__) . '/guides');
+define('LPK_BLOG_DIR', dirname(__DIR__) . '/blog');
 define('LPK_UPLOADS_DIR', dirname(__DIR__) . '/uploads/articles');
 define('LPK_ARTICLE_SITEMAP', dirname(__DIR__) . '/sitemap-articles.xml');
 
@@ -285,7 +285,7 @@ function lpk_article_shell($a, $preview = false) {
   $seo = trim((string)($a['seo_title'] ?? '')) ?: $title . ' | Learn Piano Keys';
   $desc = trim((string)($a['meta_description'] ?? '')) ?: trim((string)($a['excerpt'] ?? ''));
   $slug = lpk_slugify($a['slug'] ?? $title);
-  $url = '/guides/' . $slug . '/';
+  $url = '/blog/' . $slug . '/';
   $canonical = LPK_SITE . $url;
   $image = trim((string)($a['featured_image'] ?? '')) ?: '/og-image.png';
   $imageUrl = preg_match('#^https?://#i', $image) ? $image : LPK_SITE . '/' . ltrim($image, '/');
@@ -301,9 +301,9 @@ function lpk_article_shell($a, $preview = false) {
   $related = array_slice(array_merge($same, array_values(array_filter($all, fn($x) => ($x['category'] ?? '') !== $category))), 0, 3);
   $relHtml = '';
   if ($related) {
-    $relHtml = '<section class="article-related"><p class="eyebrow">Keep learning</p><h2>Related piano guides</h2><div class="grid g3">';
+    $relHtml = '<section class="article-related"><p class="eyebrow">Keep learning</p><h2>Related piano articles</h2><div class="grid g3">';
     foreach ($related as $r) {
-      $relHtml .= '<a class="path-card" href="/guides/' . lpk_h($r['slug']) . '/"><span class="card-num">' . lpk_h($r['category']) . '</span><h3>' . lpk_h($r['title']) . '</h3><p>' . lpk_h($r['excerpt']) . '</p><span class="path-go">Read guide &rarr;</span></a>';
+      $relHtml .= '<a class="path-card" href="/blog/' . lpk_h($r['slug']) . '/"><span class="card-num">' . lpk_h($r['category']) . '</span><h3>' . lpk_h($r['title']) . '</h3><p>' . lpk_h($r['excerpt']) . '</p><span class="path-go">Read article &rarr;</span></a>';
     }
     $relHtml .= '</div></section>';
   }
@@ -316,7 +316,7 @@ function lpk_article_shell($a, $preview = false) {
       ['@type'=>'WebPage','@id'=>$canonical.'#webpage','url'=>$canonical,'name'=>$seo,'description'=>$desc,'isPartOf'=>['@id'=>LPK_SITE.'/#website'],'inLanguage'=>'en-GB','breadcrumb'=>['@id'=>$canonical.'#breadcrumb']],
       ['@type'=>'BreadcrumbList','@id'=>$canonical.'#breadcrumb','itemListElement'=>[
         ['@type'=>'ListItem','position'=>1,'name'=>'Home','item'=>LPK_SITE.'/'],
-        ['@type'=>'ListItem','position'=>2,'name'=>'Guides','item'=>LPK_SITE.'/guides/'],
+        ['@type'=>'ListItem','position'=>2,'name'=>'Blog','item'=>LPK_SITE.'/blog/'],
         ['@type'=>'ListItem','position'=>3,'name'=>$title,'item'=>$canonical]
       ]],
       ['@type'=>'Article','@id'=>$canonical.'#article','headline'=>$title,'description'=>$desc,'datePublished'=>$published,'dateModified'=>$modified,'mainEntityOfPage'=>['@id'=>$canonical.'#webpage'],'author'=>['@id'=>LPK_SITE.'/#org'],'publisher'=>['@id'=>LPK_SITE.'/#org'],'image'=>[$imageUrl],'articleSection'=>$category,'inLanguage'=>'en-GB','isAccessibleForFree'=>true]
@@ -343,63 +343,63 @@ function lpk_article_shell($a, $preview = false) {
     '  <link rel="stylesheet" href="/assets/styles.css?v=17">\n  <link rel="stylesheet" href="/assets/articles.css?v=1">\n' .
     '  <script>(function(){try{var t=localStorage.getItem(\'lpk.theme\');if(t)document.documentElement.setAttribute(\'data-theme\',t);}catch(e){}})();</script>\n</head>\n<body>\n' .
     $previewBar .
-    '<a class="skip" href="#main">Skip to the main content</a>\n<header class="site-head"><div class="wrap"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Piano Keys</a><button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Main"><a href="/piano-keys-for-beginners.html">Start here</a><a href="/piano-lessons.html">Lessons</a><a href="/how-to-read-music.html">Read music</a><a href="/songs.html">Songs</a><a href="/chords.html">Chords</a><a href="/guides/" aria-current="page">Guides</a><a href="/tools.html">Tools</a><a href="/practice.html">Progress</a><a href="/#compare">What is free</a><button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark">Light</button><a class="btn btn-primary btn-sm nav-cta" href="/app.html">Practice room</a></nav></div></header>\n' .
-    '<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><a href="/">Home</a><span class="sep">/</span><a href="/guides/">Guides</a><span class="sep">/</span><span aria-current="page">' . lpk_h($title) . '</span></div></nav>\n' .
+    '<a class="skip" href="#main">Skip to the main content</a>\n<header class="site-head"><div class="wrap"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Piano Keys</a><button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Main"><a href="/piano-keys-for-beginners.html">Start here</a><a href="/piano-lessons.html">Lessons</a><a href="/how-to-read-music.html">Read music</a><a href="/songs.html">Songs</a><a href="/chords.html">Chords</a><a href="/blog/" aria-current="page">Blog</a><a href="/tools.html">Tools</a><a href="/practice.html">Progress</a><a href="/#compare">What is free</a><button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark">Light</button><a class="btn btn-primary btn-sm nav-cta" href="/app.html">Practice room</a></nav></div></header>\n' .
+    '<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><a href="/">Home</a><span class="sep">/</span><a href="/blog/">Blog</a><span class="sep">/</span><span aria-current="page">' . lpk_h($title) . '</span></div></nav>\n' .
     '<main id="main"><article class="article-page"><header class="article-hero"><div class="wrap article-wrap"><p class="eyebrow">' . lpk_h($category) . '</p><h1>' . lpk_h($title) . '</h1><p class="lede">' . lpk_h($a['excerpt'] ?? '') . '</p><p class="article-meta">Published ' . lpk_h($dateText) . ' · Learn Piano Keys</p>' . ($image !== '/og-image.png' ? '<img class="article-feature" src="' . lpk_h($image) . '" alt="' . lpk_h($title) . '">' : '') . '</div></header>' .
     '<section><div class="wrap article-wrap article-content">' . $content . '<aside class="article-cta"><p class="eyebrow">Try it</p><h2>' . lpk_h($ctaTitle) . '</h2><p>Use the interactive Learn Piano Keys tools to turn the idea into something you can hear and play.</p><a class="btn btn-primary" href="' . lpk_h($ctaHref) . '">' . lpk_h($ctaLabel) . '</a></aside></div></section>' .
     '<div class="wrap article-wrap">' . $relHtml . '</div></article></main>\n' .
-    '<footer class="site-foot"><div class="wrap"><div class="foot-cols"><div><h2>Learn</h2><a href="/piano-keys-for-beginners.html">Piano keys for beginners</a><a href="/piano-lessons.html">Piano lessons</a><a href="/how-to-read-music.html">How to read music notes</a></div><div><h2>Play</h2><a href="/songs.html">All songs</a><a href="/fur-elise-piano-notes.html">Für Elise</a><a href="/app.html">Practice room</a></div><div><h2>Guides</h2><a href="/guides/">All piano guides</a><a href="/scales.html">Piano scales</a><a href="/chords.html">Piano chords</a></div><div><h2>Tools</h2><a href="/piano-chord-finder.html">Chord finder</a><a href="/piano-scale-finder.html">Scale finder</a><a href="/online-piano-metronome.html">Metronome</a></div><div><h2>Site</h2><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><p class="foot-legal">Learn Piano Keys · info@learnpianokeys.com<br>Every piece on this site is in the public domain and all sound is synthesised in your browser. No recordings are used.</p></div></footer>\n' .
+    '<footer class="site-foot"><div class="wrap"><div class="foot-cols"><div><h2>Learn</h2><a href="/piano-keys-for-beginners.html">Piano keys for beginners</a><a href="/piano-lessons.html">Piano lessons</a><a href="/how-to-read-music.html">How to read music notes</a></div><div><h2>Play</h2><a href="/songs.html">All songs</a><a href="/fur-elise-piano-notes.html">Für Elise</a><a href="/app.html">Practice room</a></div><div><h2>Blog</h2><a href="/blog/">Piano blog</a><a href="/scales.html">Piano scales</a><a href="/chords.html">Piano chords</a></div><div><h2>Tools</h2><a href="/piano-chord-finder.html">Chord finder</a><a href="/piano-scale-finder.html">Scale finder</a><a href="/online-piano-metronome.html">Metronome</a></div><div><h2>Site</h2><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><p class="foot-legal">Learn Piano Keys · info@learnpianokeys.com<br>Every piece on this site is in the public domain and all sound is synthesised in your browser. No recordings are used.</p></div></footer>\n' .
     '<div class="hint" id="hint"></div><div id="sr" class="sr-only" role="status" aria-live="polite"></div>\n<script src="/assets/engine.js?v=17"></script>\n<script src="/assets/gate.js?v=17"></script>\n<script src="/assets/site.js?v=17"></script>\n<script type="application/ld+json">' . $json . '</script>\n</body>\n</html>\n';
 }
 
 function lpk_ensure_public_dirs() {
-  if (!is_dir(LPK_GUIDES_DIR) && !@mkdir(LPK_GUIDES_DIR, 0755, true)) throw new RuntimeException('Could not create /guides/.');
+  if (!is_dir(LPK_BLOG_DIR) && !@mkdir(LPK_BLOG_DIR, 0755, true)) throw new RuntimeException('Could not create /blog/.');
   if (!is_dir(LPK_UPLOADS_DIR)) @mkdir(LPK_UPLOADS_DIR, 0755, true);
 }
 
 function lpk_publish_article($a) {
   lpk_ensure_public_dirs();
   $slug = lpk_slugify($a['slug']);
-  $dir = LPK_GUIDES_DIR . '/' . $slug;
+  $dir = LPK_BLOG_DIR . '/' . $slug;
   if (!is_dir($dir) && !@mkdir($dir, 0755, true)) throw new RuntimeException('Could not create the article folder.');
   if (@file_put_contents($dir . '/index.html', lpk_article_shell($a, false), LOCK_EX) === false) throw new RuntimeException('Could not write the public article page.');
-  lpk_regenerate_guides_hub();
+  lpk_regenerate_blog_hub();
   lpk_regenerate_article_sitemap();
 }
 
 function lpk_remove_published_article($a) {
   $slug = lpk_slugify($a['slug'] ?? '');
   if ($slug !== '') {
-    $file = LPK_GUIDES_DIR . '/' . $slug . '/index.html';
+    $file = LPK_BLOG_DIR . '/' . $slug . '/index.html';
     if (is_file($file)) @unlink($file);
     $dir = dirname($file);
     if (is_dir($dir)) @rmdir($dir);
   }
-  lpk_regenerate_guides_hub();
+  lpk_regenerate_blog_hub();
   lpk_regenerate_article_sitemap();
 }
 
-function lpk_regenerate_guides_hub() {
+function lpk_regenerate_blog_hub() {
   lpk_ensure_public_dirs();
   $rows = array_values(array_filter(lpk_articles_load(), fn($a) => ($a['status'] ?? '') === 'published'));
   usort($rows, fn($a,$b) => strcmp((string)($b['published_at'] ?? ''), (string)($a['published_at'] ?? '')));
   $cards = '';
   foreach ($rows as $a) {
-    $cards .= '<a class="path-card" href="/guides/' . lpk_h($a['slug']) . '/"><span class="card-num">' . lpk_h($a['category']) . '</span><h2>' . lpk_h($a['title']) . '</h2><p>' . lpk_h($a['excerpt']) . '</p><span class="path-go">Read guide &rarr;</span></a>';
+    $cards .= '<a class="path-card" href="/blog/' . lpk_h($a['slug']) . '/"><span class="card-num">' . lpk_h($a['category']) . '</span><h2>' . lpk_h($a['title']) . '</h2><p>' . lpk_h($a['excerpt']) . '</p><span class="path-go">Read article &rarr;</span></a>';
   }
-  if ($cards === '') $cards = '<div class="card"><h2>New guides are being prepared</h2><p class="muted">In the meantime, use the lessons, songs, scales, chords and interactive tools already on the site.</p><a class="btn btn-primary btn-sm" href="/piano-lessons.html">Start a lesson</a></div>';
-  $body = '<section class="page-head"><div class="wrap"><p class="eyebrow">Learn Piano Keys guides</p><h1>Piano guides for beginners</h1><p class="lede">Clear piano explanations connected to interactive lessons and tools, so you can read the answer and then try it on the keyboard.</p></div></section><section><div class="wrap"><div class="grid g3 article-grid">' . $cards . '</div></div></section>';
-  $schema = json_encode(['@context'=>'https://schema.org','@type'=>'CollectionPage','name'=>'Piano guides for beginners','url'=>LPK_SITE.'/guides/','description'=>'Beginner piano guides connected to interactive lessons and tools.','isPartOf'=>['@type'=>'WebSite','url'=>LPK_SITE.'/']], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
-  $html = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Piano Guides for Beginners | Learn Piano Keys</title><meta name="description" content="Beginner piano guides for scales, chords, songs, music theory and technique, connected to interactive tools you can play in your browser."><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"><meta name="theme-color" content="#14100F"><link rel="canonical" href="' . LPK_SITE . '/guides/"><meta property="og:type" content="website"><meta property="og:site_name" content="Learn Piano Keys"><meta property="og:title" content="Piano Guides for Beginners | Learn Piano Keys"><meta property="og:description" content="Beginner piano guides connected to interactive tools you can play in your browser."><meta property="og:url" content="' . LPK_SITE . '/guides/"><meta property="og:image" content="' . LPK_SITE . '/og-image.png"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=IBM+Plex+Mono:wght@400;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/styles.css?v=17"><link rel="stylesheet" href="/assets/articles.css?v=1"><script>(function(){try{var t=localStorage.getItem(\'lpk.theme\');if(t)document.documentElement.setAttribute(\'data-theme\',t);}catch(e){}})();</script></head><body><a class="skip" href="#main">Skip to the main content</a><header class="site-head"><div class="wrap"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Piano Keys</a><button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Main"><a href="/piano-keys-for-beginners.html">Start here</a><a href="/piano-lessons.html">Lessons</a><a href="/how-to-read-music.html">Read music</a><a href="/songs.html">Songs</a><a href="/chords.html">Chords</a><a href="/guides/" aria-current="page">Guides</a><a href="/tools.html">Tools</a><a href="/practice.html">Progress</a><a href="/#compare">What is free</a><button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark">Light</button><a class="btn btn-primary btn-sm nav-cta" href="/app.html">Practice room</a></nav></div></header><nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><a href="/">Home</a><span class="sep">/</span><span aria-current="page">Guides</span></div></nav><main id="main">' . $body . '</main><footer class="site-foot"><div class="wrap"><div class="foot-cols"><div><h2>Learn</h2><a href="/piano-keys-for-beginners.html">Piano keys for beginners</a><a href="/piano-lessons.html">Piano lessons</a><a href="/how-to-read-music.html">How to read music notes</a></div><div><h2>Play</h2><a href="/songs.html">All songs</a><a href="/app.html">Practice room</a></div><div><h2>Guides</h2><a href="/guides/">All piano guides</a><a href="/scales.html">Piano scales</a><a href="/chords.html">Piano chords</a></div><div><h2>Tools</h2><a href="/piano-chord-finder.html">Chord finder</a><a href="/piano-scale-finder.html">Scale finder</a></div><div><h2>Site</h2><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><p class="foot-legal">Learn Piano Keys · info@learnpianokeys.com</p></div></footer><div class="hint" id="hint"></div><div id="sr" class="sr-only" role="status" aria-live="polite"></div><script src="/assets/engine.js?v=17"></script><script src="/assets/gate.js?v=17"></script><script src="/assets/site.js?v=17"></script><script type="application/ld+json">' . $schema . '</script></body></html>';
-  if (@file_put_contents(LPK_GUIDES_DIR . '/index.html', $html, LOCK_EX) === false) throw new RuntimeException('Could not update the guides hub.');
+  if ($cards === '') $cards = '<div class="card"><h2>New articles are being prepared</h2><p class="muted">In the meantime, use the lessons, songs, scales, chords and interactive tools already on the site.</p><a class="btn btn-primary btn-sm" href="/piano-lessons.html">Start a lesson</a></div>';
+  $body = '<section class="page-head"><div class="wrap"><p class="eyebrow">Learn Piano Keys blog</p><h1>Piano blog for beginners</h1><p class="lede">Practical piano articles connected to interactive lessons and tools, so you can learn the idea and then try it on the keyboard.</p></div></section><section><div class="wrap"><div class="grid g3 article-grid">' . $cards . '</div></div></section>';
+  $schema = json_encode(['@context'=>'https://schema.org','@type'=>'Blog','name'=>'Piano blog for beginners','url'=>LPK_SITE.'/blog/','description'=>'Beginner piano articles connected to interactive lessons and tools.','isPartOf'=>['@type'=>'WebSite','url'=>LPK_SITE.'/']], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+  $html = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Piano Blog for Beginners | Learn Piano Keys</title><meta name="description" content="Beginner piano articles about scales, chords, songs, music theory and technique, connected to interactive tools you can play in your browser."><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"><meta name="theme-color" content="#14100F"><link rel="canonical" href="' . LPK_SITE . '/blog/"><meta property="og:type" content="website"><meta property="og:site_name" content="Learn Piano Keys"><meta property="og:title" content="Piano Blog for Beginners | Learn Piano Keys"><meta property="og:description" content="Beginner piano articles connected to interactive tools you can play in your browser."><meta property="og:url" content="' . LPK_SITE . '/blog/"><meta property="og:image" content="' . LPK_SITE . '/og-image.png"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=IBM+Plex+Mono:wght@400;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/styles.css?v=17"><link rel="stylesheet" href="/assets/articles.css?v=1"><script>(function(){try{var t=localStorage.getItem(\'lpk.theme\');if(t)document.documentElement.setAttribute(\'data-theme\',t);}catch(e){}})();</script></head><body><a class="skip" href="#main">Skip to the main content</a><header class="site-head"><div class="wrap"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Piano Keys</a><button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Main"><a href="/piano-keys-for-beginners.html">Start here</a><a href="/piano-lessons.html">Lessons</a><a href="/how-to-read-music.html">Read music</a><a href="/songs.html">Songs</a><a href="/chords.html">Chords</a><a href="/blog/" aria-current="page">Blog</a><a href="/tools.html">Tools</a><a href="/practice.html">Progress</a><a href="/#compare">What is free</a><button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark">Light</button><a class="btn btn-primary btn-sm nav-cta" href="/app.html">Practice room</a></nav></div></header><nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><a href="/">Home</a><span class="sep">/</span><span aria-current="page">Blog</span></div></nav><main id="main">' . $body . '</main><footer class="site-foot"><div class="wrap"><div class="foot-cols"><div><h2>Learn</h2><a href="/piano-keys-for-beginners.html">Piano keys for beginners</a><a href="/piano-lessons.html">Piano lessons</a><a href="/how-to-read-music.html">How to read music notes</a></div><div><h2>Play</h2><a href="/songs.html">All songs</a><a href="/app.html">Practice room</a></div><div><h2>Blog</h2><a href="/blog/">Piano blog</a><a href="/scales.html">Piano scales</a><a href="/chords.html">Piano chords</a></div><div><h2>Tools</h2><a href="/piano-chord-finder.html">Chord finder</a><a href="/piano-scale-finder.html">Scale finder</a></div><div><h2>Site</h2><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div><p class="foot-legal">Learn Piano Keys · info@learnpianokeys.com</p></div></footer><div class="hint" id="hint"></div><div id="sr" class="sr-only" role="status" aria-live="polite"></div><script src="/assets/engine.js?v=17"></script><script src="/assets/gate.js?v=17"></script><script src="/assets/site.js?v=17"></script><script type="application/ld+json">' . $schema . '</script></body></html>';
+  if (@file_put_contents(LPK_BLOG_DIR . '/index.html', $html, LOCK_EX) === false) throw new RuntimeException('Could not update the blog page.');
 }
 
 function lpk_regenerate_article_sitemap() {
   $rows = array_values(array_filter(lpk_articles_load(), fn($a) => ($a['status'] ?? '') === 'published'));
-  $urls = ['  <url><loc>' . LPK_SITE . '/guides/</loc><lastmod>' . gmdate('Y-m-d') . '</lastmod></url>'];
+  $urls = ['  <url><loc>' . LPK_SITE . '/blog/</loc><lastmod>' . gmdate('Y-m-d') . '</lastmod></url>'];
   foreach ($rows as $a) {
     $last = substr((string)($a['updated_at'] ?? gmdate('c')), 0, 10);
-    $urls[] = '  <url><loc>' . LPK_SITE . '/guides/' . lpk_h($a['slug']) . '/</loc><lastmod>' . $last . '</lastmod></url>';
+    $urls[] = '  <url><loc>' . LPK_SITE . '/blog/' . lpk_h($a['slug']) . '/</loc><lastmod>' . $last . '</lastmod></url>';
   }
   $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . implode("\n", $urls) . "\n</urlset>\n";
   if (@file_put_contents(LPK_ARTICLE_SITEMAP, $xml, LOCK_EX) === false) throw new RuntimeException('Could not update sitemap-articles.xml.');
@@ -422,7 +422,7 @@ function lpk_upload_featured_image($file, $slug) {
 }
 
 function lpk_admin_layout_start($title, $active = 'articles') {
-  echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>' . lpk_h($title) . ' · Learn Piano Keys Admin</title><link rel="stylesheet" href="/assets/styles.css?v=17"><link rel="stylesheet" href="/assets/admin.css?v=1"></head><body class="admin-body"><header class="admin-top"><div class="admin-shell"><a class="admin-brand" href="/admin/">Piano Keys <span>Admin</span></a><nav><a class="' . ($active==='articles'?'active':'') . '" href="/admin/">Articles</a><a href="/api/leads.php">Leads</a><a href="/guides/" target="_blank" rel="noopener">View guides</a><a href="/admin/logout.php">Sign out</a></nav></div></header><main class="admin-shell admin-main">';
+  echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>' . lpk_h($title) . ' · Learn Piano Keys Admin</title><link rel="stylesheet" href="/assets/styles.css?v=17"><link rel="stylesheet" href="/assets/admin.css?v=1"></head><body class="admin-body"><header class="admin-top"><div class="admin-shell"><a class="admin-brand" href="/admin/">Piano Keys <span>Admin</span></a><nav><a class="' . ($active==='articles'?'active':'') . '" href="/admin/">Articles</a><a href="/api/leads.php">Leads</a><a href="/blog/" target="_blank" rel="noopener">View blog</a><a href="/admin/logout.php">Sign out</a></nav></div></header><main class="admin-shell admin-main">';
 }
 
 function lpk_admin_layout_end() {
