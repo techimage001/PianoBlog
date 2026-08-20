@@ -254,4 +254,4 @@ new device immediately.
 
 ## Article publishing admin (V17 upgrade)
 
-A lightweight publishing system is available at `/admin/`. It uses the existing `admin_password` in `lpk_private/secrets.php`, stores article records outside `public_html`, and publishes real static HTML pages under `/guides/<slug>/`. See `ADMIN-ARTICLE-SYSTEM.md` for the test and deployment workflow.
+A lightweight publishing system is available at `/admin/`. It uses the existing `admin_password` in `lpk_private/secrets.php`, stores article records outside `public_html`, and publishes real static HTML pages under `/blog/<slug>/`. See `ADMIN-ARTICLE-SYSTEM.md` for the test and deployment workflow.
